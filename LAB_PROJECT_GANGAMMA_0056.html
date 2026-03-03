@@ -1,326 +1,382 @@
-<!--Generate a complete responsive web page project using HTML, CSS, and JavaScript.
+<!--Generate a complete single-file HTML webpage with internal CSS and JavaScript.
 
-Project Requirements:
+Project Title: "The Daily Sniff - Dog Daycare & Street Dog Fund"
 
-1. Create three separate files:
-   - index.html
-   - style.css
-   - script.js
+Requirements:
 
-2. The webpage should be a modern, responsive landing page for a tech startup.
+1. The webpage should include:
 
-3. HTML Requirements:
-   - Proper semantic structure (header, nav, section, footer).
-   - A navigation bar with logo and 4 menu items.
-   - A hero section with heading, paragraph, and CTA button.
-   - A features section with 3 feature cards.
-   - A contact form (name, email, message).
-   - Link the external CSS and JavaScript files properly.
+- Header with website title and tagline
+- Navigation bar with anchor links (About, Daycare Plans, Donate, Contact)
+- About section with detailed paragraphs about dog daycare and a street dog rescue fund
+- Manual image slideshow with:
+  - 3 dog images
+  - Previous and Next buttons
+  - Navigation dots
+  - JavaScript functions: plusSlides(), currentSlide(), showSlides()
+- Daycare plans section with:
+  - Table showing Half Day, Full Day, Monthly plans with prices in Rs.
+  - Booking form (name, dog name, plan dropdown, date, message)
+- Donation section with:
+  - Donation form (name, email, amount, message)
+- Contact section with email and phone
+- Footer with copyright text
 
-4. CSS Requirements:
-   - Use modern styling with Flexbox or Grid.
-   - Responsive design (mobile-friendly with media queries).
-   - Smooth hover effects and button animations.
-   - Clean typography and good spacing.
-   - Add subtle shadows and modern color palette.
+2. Styling Requirements:
 
-5. JavaScript Requirements:
-   - Add form validation.
-   - Show alert or success message on form submission.
-   - Add smooth scroll behavior for navigation links.
-   - Add a mobile hamburger menu toggle.
+- Use internal CSS inside <style> tag
+- Light gray body background
+- Teal theme color
+- Styled navigation bar
+- Styled tables with borders
+- Styled forms with full-width inputs
+- Styled buttons
+- Slideshow container with:
+  - Rounded corners
+  - Overlay navigation arrows
+  - Dot indicators
+  - Active dot highlight
 
-6. Code Quality:
-   - Well-structured and commented code.
-   - Clean indentation.
-   - No inline CSS or JS.
-   - Use modern JavaScript (ES6).
+3. JavaScript Requirements:
 
-Generate complete code for all three files.-->
+- Manual slideshow (NOT automatic)
+- Use DOM methods like getElementsByClassName
+- Hide and show slides properly
+- Add active class to current dot
+
+4. Keep code simple and beginner-friendly.
+5. No external libraries.
+6. Everything must be in ONE HTML file.
+
+Generate complete working code.-->
 
 <!-- index.html -->
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tech Startup Landing Page</title>
-
-    <!-- combined CSS -->
+    <title>The Daily Sniff - Dog Daycare & Street Dog Fund</title>
     <style>
-        /* General Styles */
         body {
-            font-family: 'Arial', sans-serif;
+            background-color: lightgray;
+            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            color: #333;
         }
-        /* Navbar Styles */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            background-color: #f8f8f8;
+
+        h1, h2 {
+            color: teal;
         }
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 20px;
+
+        header {
+            background-color: lightseagreen;
+            color: white;
+            text-align: center;
+            padding: 15px;
         }
-        .nav-links li {
-            display: inline;
+
+        nav {
+            background-color: mintcream;
+            text-align: center;
+            padding: 10px;
         }
-        .nav-links a {
+
+        nav a {
+            color: teal;
             text-decoration: none;
-            color: #333;
-            font-weight: bold;
+            margin: 0 10px;
         }
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
+
+        section {
+            background-color: white;
+            margin: 15px;
+            padding: 15px;
+            border: 1px solid gray;
         }
-        .hamburger .line {
-            width: 25px;
-            height: 3px;
-            background-color: #333;
-            margin: 4px 0;
-        }
-        /* Hero Section Styles */
-        .hero {
-            text-align: center;
-            padding: 100px 20px;
-            background-color: #e0f7fa;
-        }
-        .hero h1 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-        }
-        .hero p {
-            font-size: 1.2em;
-            margin-bottom: 30px;
-        }
-        .cta-button {
-            padding: 10px 20px;
-            font-size: 1em;
-            color: #fff;
-            background-color: #007BFF;
+
+        .button {
+            background-color: teal;
+            color: white;
+            padding: 8px 12px;
+            text-decoration: none;
             border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
         }
-        .cta-button:hover {
-            background-color: #0056b3;
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
         }
-        /* Features Section Styles */
-        .features {
-            padding: 50px 20px;
-            background-color: #f0f0f0;
+
+        th, td {
+            border: 1px solid gray;
+            padding: 8px;
+            text-align: left;
         }
-        .features h2 {
-            text-align: center;
-            margin-bottom: 40px;
+
+        th {
+            background-color: mintcream;
         }
-        .feature-cards {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-        }
-        .card {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 300px;
-            text-align: center;
-        }
-        .card h3 {
-            margin-bottom: 15px;
-        }
-        .card p {
-            font-size: 1em;
-            color: #666;
-        }
-        /* Contact Section Styles */
-        .contact {
-            padding: 50px 20px;
-            background-color: #e0f7fa;
-        }
-        .contact h2 {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        #contactForm {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            max-width: 400px;
-            margin: 0 auto;
-        }
-        #contactForm input,
-        #contactForm textarea {
+
+        form {
+            background-color: whitesmoke;
             padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 1em;
+            border: 1px solid gray;
+            margin-top: 10px;
         }
-        #contactForm button {
-            padding: 10px;
-            font-size: 1em;
-            color: #fff;
-            background-color: #007BFF;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
+
+        label {
+            display: block;
+            margin-top: 8px;
         }
-        #contactForm button:hover {
-            background-color: #0056b3;
+
+        input, select, textarea {
+            width: 100%;
+            padding: 6px;
+            margin-top: 4px;
+            border: 1px solid gray;
         }
-        /* Footer Styles */
+
         footer {
+            background-color: darkslategray;
+            color: white;
             text-align: center;
-            padding: 20px;
-            background-color: #f8f8f8;
-            color: #666;
+            padding: 12px;
+            margin-top: 20px;
         }
-        /* Responsive Styles */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                gap: 10px;
-                background-color: #f8f8f8;
-                position: absolute;
-                top: 60px;
-                right: 20px;
-                padding: 20px;
-                border-radius: 5px;
-            }
-            .nav-links.active {
-                display: flex;
-            }
-            .hamburger {
-                display: flex;
-            }
-            .feature-cards {
-                flex-direction: column;
-                align-items: center;
-            }
+
+        /* Slideshow Styling */
+        .slideshow-container {
+            max-width: 60%;
+            position: relative;
+            margin: auto;
+            border-radius: 10px;
+            overflow: hidden;
         }
+
+        .mySlides {
+            display: none;
+        }
+
+        .slideshow-container img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        /* Buttons */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 10px;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            transition: 0.3s;
+            user-select: none;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .next {
+            right: 0;
+        }
+
+        .prev:hover, .next:hover {
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        /* Dots */
+        .dot-container {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .dot {
+            height: 12px;
+            width: 12px;
+            margin: 4px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .active {
+            background-color: teal;
+        }
+
     </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="logo">TechStartup</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#about">About</a></li>
-            </ul>
-            <div class="hamburger">
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
-            </div>
-        </nav>
-    </header>
 
-    <section id="home" class="hero">
-        <h1>Welcome to TechStartup</h1>
-        <p>Innovating the future with cutting-edge technology solutions.</p>
-        <button class="cta-button">Get Started</button>
-    </section>
+<header>
+    <h1>The Daily Sniff </h1>
+    <p>Dog Daycare and Street Dog Rescue Fund</p>
+</header>
 
-    <section id="features" class="features">
-        <h2>Our Features</h2>
-        <div class="feature-cards">
-            <div class="card">
-                <h3>Feature One</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </div>
-            <div class="card">
-                <h3>Feature Two</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </div>
-            <div class="card">
-                <h3>Feature Three</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </div>
+<nav>
+    <a href="#about">About</a>
+    <a href="#plans">Daycare Plans</a>
+    <a href="#donate">Donate</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<section id="about">
+    <h2>About Us</h2>
+ <p><b>The Daily Sniff</b> is a warm and friendly daycare where dogs can enjoy a safe and happy environment while their owners are away. Our team takes care of every dog with love, playtime, and proper rest. We provide spacious play areas, comfortable resting spots, and healthy treats to keep tails wagging all day long.</p>
+    <p>We also run a special <b>Street Dog Fund</b> where we use donations to feed, vaccinate, and rescue stray dogs. Every small contribution helps us make a big difference. Our goal is to create a caring community for every dog.</p>
+
+
+
+    <!-- MANUAL IMAGE SLIDESHOW -->
+    <div class="slideshow-container">
+
+        <div class="mySlides">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2_9rHKZd_EQ4pAx-VMyW45pJqfA4SeprP1g&s" alt="Dog 1">
         </div>
-    </section>
 
-    <section id="contact" class="contact">
-        <h2>Contact Us</h2>
-        <form id="contactForm">
-            <input type="text" id="name" name="name" placeholder="Your Name" required>
-            <input type="email" id="email" name="email" placeholder="Your Email" required>
-            <textarea id="message" name="message" placeholder="Your Message" required></textarea>
-            <button type="submit">Send Message</button>
-        </form>
-    </section>
+        <div class="mySlides">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtw9SVHOrY0ZibimzipPnbYENy1WGppdPuNw&s" alt="Dog 2">
+        </div>
 
-    <footer>
-        <p>&copy; 2024 TechStartup. All rights reserved.</p>
-    </footer>
+        <div class="mySlides">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhzJLKxe1A-jMfUzo6Hm0Si5KqeLSUNMPbJg&s" alt="Dog 3">
+        </div>
 
-    <!-- combined JavaScript -->
+        <!-- Manual buttons -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+
+    <div class="dot-container">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+    </div>
+
     <script>
-        // JavaScript for form validation and mobile menu toggle
-        document.addEventListener('DOMContentLoaded', () => {
-            // Mobile menu toggle
-            const hamburger = document.querySelector('.hamburger');
-            const navLinks = document.querySelector('.nav-links');
+        let slideIndex = 1;
+        showSlides(slideIndex);
 
-            hamburger.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-            });
+        // Manual Controls
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
 
-            // Form validation
-            const contactForm = document.getElementById('contactForm');
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
 
-            contactForm.addEventListener('submit', (e) => {
-                e.preventDefault();
+        function showSlides(n) {
+            let i;
+            const slides = document.getElementsByClassName("mySlides");
+            const dots = document.getElementsByClassName("dot");
 
-                const name = document.getElementById('name').value.trim();
-                const email = document.getElementById('email').value.trim();
-                const message = document.getElementById('message').value.trim();
+            if (n > slides.length) slideIndex = 1;
+            if (n < 1) slideIndex = slides.length;
 
-                if (name === '' || email === '' || message === '') {
-                    alert('Please fill in all fields.');
-                    return;
-                }
-
-                if (!validateEmail(email)) {
-                    alert('Please enter a valid email address.');
-                    return;
-                }
-
-                alert('Thank you for your message!');
-                contactForm.reset();
-            });
-
-            function validateEmail(email) {
-                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                return re.test(String(email).toLowerCase());
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
             }
-        });
 
-        // Smooth scroll for navigation links
-        const navLinks = document.querySelectorAll('.nav-links a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetId = link.getAttribute('href').substring(1);
-                const targetSection = document.getElementById(targetId);
-                targetSection.scrollIntoView({ behavior: 'smooth' });
-            });
-        });
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+        }
     </script>
+</section>
+   
+
+<section id="plans">
+    <h2>Our Daycare Plans</h2>
+   
+    <table>
+        <tr>
+            <th>Plan</th>
+            <th>Hours</th>
+            <th>Price</th>
+        </tr>
+        <tr>
+            <td>Half Day</td>
+            <td>Up to 5 hours</td>
+            <td>Rs. 600</td>
+        </tr>
+        <tr>
+            <td>Full Day</td>
+            <td>Up to 10 hours</td>
+            <td>Rs. 1000</td>
+        </tr>
+        <tr>
+            <td>Monthly</td>
+            <td>20 visits</td>
+            <td>Rs. 16000</td>
+        </tr>
+    </table>
+
+    <h3>Book Your Dog's Stay</h3>
+    <p>Fill in your details below to book a daycare plan for your furry friend.</p>
+
+    <form>
+        <label>Your Name:</label>
+        <input type="text" name="name" required>
+
+        <label>Your Dog's Name:</label>
+        <input type="text" name="dogname" required>
+
+        <label>Select Plan:</label>
+        <select name="plan">
+            <option>Half Day - Rs. 600</option>
+            <option>Full Day - Rs. 1000</option>
+            <option>Monthly - Rs. 16000</option>
+        </select>
+
+        <label>Preferred Date:</label>
+        <input type="date" name="date">
+
+        <label>Any Special Instructions:</label>
+        <textarea name="message"></textarea>
+
+        <br><br>
+        <input type="submit" value="Confirm Booking" class="button">
+    </form>
+</section>
+
+<section id="donate">
+    <h2>Donate to the Street Dog Fund</h2>
+       <p>Every donation helps feed, vaccinate, and care for street dogs. Your support keeps tails wagging and hearts full!</p>
+
+    <form>
+        <label>Your Name:</label>
+        <input type="text" name="name" required>
+
+        <label>Email:</label>
+        <input type="email" name="email" required>
+
+        <label>Amount (Rs.):</label>
+        <input type="number" name="amount" min="100" step="100">
+
+        <label>Message:</label>
+        <textarea name="message"></textarea>
+
+        <br><br>
+        <input type="submit" value="Donate Now" class="button">
+    </form>
+</section>
+
+<section id="contact">
+    <h2>Contact Us</h2>
+    <p>Email:</p>
+<a href="mailto:dailysniff@gmail.com">dailysniff@gmail.com</a>
+    <p>Phone:</p>
+<p> +91 8660626491</p>
+</section>
+
+<footer>
+    <p>© 2025 The Daily Sniff | Helping Dogs Every Day 🐾</p>
+</footer>
+
 </body>
 </html>
