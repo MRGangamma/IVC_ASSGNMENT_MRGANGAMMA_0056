@@ -1,0 +1,326 @@
+<!--Generate a complete responsive web page project using HTML, CSS, and JavaScript.
+
+Project Requirements:
+
+1. Create three separate files:
+   - index.html
+   - style.css
+   - script.js
+
+2. The webpage should be a modern, responsive landing page for a tech startup.
+
+3. HTML Requirements:
+   - Proper semantic structure (header, nav, section, footer).
+   - A navigation bar with logo and 4 menu items.
+   - A hero section with heading, paragraph, and CTA button.
+   - A features section with 3 feature cards.
+   - A contact form (name, email, message).
+   - Link the external CSS and JavaScript files properly.
+
+4. CSS Requirements:
+   - Use modern styling with Flexbox or Grid.
+   - Responsive design (mobile-friendly with media queries).
+   - Smooth hover effects and button animations.
+   - Clean typography and good spacing.
+   - Add subtle shadows and modern color palette.
+
+5. JavaScript Requirements:
+   - Add form validation.
+   - Show alert or success message on form submission.
+   - Add smooth scroll behavior for navigation links.
+   - Add a mobile hamburger menu toggle.
+
+6. Code Quality:
+   - Well-structured and commented code.
+   - Clean indentation.
+   - No inline CSS or JS.
+   - Use modern JavaScript (ES6).
+
+Generate complete code for all three files.-->
+
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Startup Landing Page</title>
+
+    <!-- combined CSS -->
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            color: #333;
+        }
+        /* Navbar Styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #f8f8f8;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+        .nav-links li {
+            display: inline;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        .hamburger .line {
+            width: 25px;
+            height: 3px;
+            background-color: #333;
+            margin: 4px 0;
+        }
+        /* Hero Section Styles */
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background-color: #e0f7fa;
+        }
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+        .cta-button {
+            padding: 10px 20px;
+            font-size: 1em;
+            color: #fff;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .cta-button:hover {
+            background-color: #0056b3;
+        }
+        /* Features Section Styles */
+        .features {
+            padding: 50px 20px;
+            background-color: #f0f0f0;
+        }
+        .features h2 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .feature-cards {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+        .card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        .card h3 {
+            margin-bottom: 15px;
+        }
+        .card p {
+            font-size: 1em;
+            color: #666;
+        }
+        /* Contact Section Styles */
+        .contact {
+            padding: 50px 20px;
+            background-color: #e0f7fa;
+        }
+        .contact h2 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        #contactForm {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        #contactForm input,
+        #contactForm textarea {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        #contactForm button {
+            padding: 10px;
+            font-size: 1em;
+            color: #fff;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #contactForm button:hover {
+            background-color: #0056b3;
+        }
+        /* Footer Styles */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #f8f8f8;
+            color: #666;
+        }
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                gap: 10px;
+                background-color: #f8f8f8;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                padding: 20px;
+                border-radius: 5px;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .feature-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">TechStartup</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+            <div class="hamburger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <h1>Welcome to TechStartup</h1>
+        <p>Innovating the future with cutting-edge technology solutions.</p>
+        <button class="cta-button">Get Started</button>
+    </section>
+
+    <section id="features" class="features">
+        <h2>Our Features</h2>
+        <div class="feature-cards">
+            <div class="card">
+                <h3>Feature One</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+            <div class="card">
+                <h3>Feature Two</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+            <div class="card">
+                <h3>Feature Three</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>Contact Us</h2>
+        <form id="contactForm">
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+            <input type="email" id="email" name="email" placeholder="Your Email" required>
+            <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 TechStartup. All rights reserved.</p>
+    </footer>
+
+    <!-- combined JavaScript -->
+    <script>
+        // JavaScript for form validation and mobile menu toggle
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile menu toggle
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+
+            // Form validation
+            const contactForm = document.getElementById('contactForm');
+
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const message = document.getElementById('message').value.trim();
+
+                if (name === '' || email === '' || message === '') {
+                    alert('Please fill in all fields.');
+                    return;
+                }
+
+                if (!validateEmail(email)) {
+                    alert('Please enter a valid email address.');
+                    return;
+                }
+
+                alert('Thank you for your message!');
+                contactForm.reset();
+            });
+
+            function validateEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(String(email).toLowerCase());
+            }
+        });
+
+        // Smooth scroll for navigation links
+        const navLinks = document.querySelectorAll('.nav-links a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
